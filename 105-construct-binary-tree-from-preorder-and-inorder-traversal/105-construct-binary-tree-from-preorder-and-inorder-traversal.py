@@ -7,39 +7,42 @@
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         
-        def array_to_tree(left, right):
-            nonlocal preorder_index
-            if left > right: return None
+#         def array_to_tree(left, right):
+#             nonlocal preorder_index
+#             if left > right: return None
 
-            root_value = preorder[preorder_index]
-            root = TreeNode(root_value)
+#             root_value = preorder[preorder_index]
+#             root = TreeNode(root_value)
 
 
-            preorder_index += 1
+#             preorder_index += 1
 
-            root.left = array_to_tree(left, inorder_index_map[root_value] - 1)
-            root.right = array_to_tree(inorder_index_map[root_value] + 1, right)
+#             root.left = array_to_tree(left, inorder_index_map[root_value] - 1)
+#             root.right = array_to_tree(inorder_index_map[root_value] + 1, right)
 
-            return root
-
-        preorder_index = 0
-
-        inorder_index_map = {}
-        for index, value in enumerate(inorder):
-            inorder_index_map[value] = index
-
-        return array_to_tree(0, len(preorder) - 1)
-#         mapp = {}
-#         for i,v in enumerate(inorder):
-#             mapp[v]=i
-        
-#         def helperbuild(low,high):
-#             if low>high:
-#                 return 
-#             root = preorder.pop(0)
-#             mid =mapp[root]
-#             root.left = helperbuild(low,mid-1)
-#             root.right = helperbuild(mid+1 , high)
 #             return root
+
+#         preorder_index = 0
+
+#         inorder_index_map = {}
+#         for index, value in enumerate(inorder):
+#             inorder_index_map[value] = index
+
+#         return array_to_tree(0, len(preorder) - 1)
+        mapp = {}
+        for i,v in enumerate(inorder):
+            mapp[v]=i
+        print(preorder)
         
-#         return helperbuild(0,len(inorder)-1)
+        def helperbuild(low,high):
+            if low>high:
+                return 
+            root = preorder.pop(0)
+            # print(root)
+            mid =mapp[root]
+            root = TreeNode(root)
+            root.left = helperbuild(low,mid-1)
+            root.right = helperbuild(mid+1 , high)
+            return root
+        
+        return helperbuild(0,len(inorder)-1)
