@@ -8,6 +8,7 @@ class Node:
 
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
+        
         hash_oldnew = {}
         
         def dfs(node):
@@ -22,3 +23,4 @@ class Solution:
             return copy
         
         return dfs(node) if node else None
+        
