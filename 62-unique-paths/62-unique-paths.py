@@ -1,6 +1,15 @@
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        dp = [[0]*n]*m
+        
+        N = m+n-2
+        r = m-1
+        res =1
+        
+        for i in range(1,r+1):
+            res = res*(N-r+i)//i
+            
+        return res    
+        '''dp = [[0]*n]*m
         
         for i in range(m):
             dp[i][0]=1
@@ -11,9 +20,11 @@ class Solution:
             for j in range(1,n):
                 dp[i][j] = dp[i-1][j]+dp[i][j-1]
         return dp[m-1][n-1]
+        '''
         
-        
-        '''dp = [[-1]*n]*m
+        '''
+        wrongg
+        dp = [[-1]*n]*m
         print(dp)
         def help(i,j,m,n,dp):
             if i>=m or j>=n:
