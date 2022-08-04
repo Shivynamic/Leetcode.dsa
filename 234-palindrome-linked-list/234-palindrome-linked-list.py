@@ -23,8 +23,8 @@ class Solution:
             slow = slow.next
             fast=fast.next.next
         dummy = head
-        slow.next= rev(slow.next)
-        slow = slow.next
+        slow= rev(slow.next)
+        # slow = slow.next
         while slow:
             if dummy.val==slow.val:
                 slow=slow.next
